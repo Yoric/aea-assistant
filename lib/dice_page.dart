@@ -137,9 +137,11 @@ class _DicePageState extends State<DicePage> {
         ),
       ),
       bottomNavigationBar: BottomNavigationBar(
+        type: BottomNavigationBarType.fixed,
         items: const <BottomNavigationBarItem>[
           BottomNavigationBarItem(
               icon: Icon(Icons.tap_and_play), title: Text("Deck")),
+          BottomNavigationBarItem(icon: Icon(Icons.face), title: Text("Chaos")),
           BottomNavigationBarItem(
               icon: Icon(Icons.money_off), title: Text("Shadows")),
           BottomNavigationBarItem(
@@ -151,9 +153,12 @@ class _DicePageState extends State<DicePage> {
               Navigator.pushNamed(context, "/deck");
               break;
             case 1:
-              Navigator.pushNamed(context, "/shadow-dwellers");
+              Navigator.pushNamed(context, "/chaos-dwellers");
               break;
             case 2:
+              Navigator.pushNamed(context, "/shadow-dwellers");
+              break;
+            case 3:
               Navigator.pushNamed(context, "/amberites");
               break;
           }

@@ -61,6 +61,16 @@ class AeAAssistantApp extends StatelessWidget {
               ],
             );
           },
+          '/chaos-dwellers': (BuildContext context) {
+            return NamesPage(
+              namePaths: [
+                NamePath(
+                  firstNames: "assets/names/ndebele-first-names.txt",
+                  surnames: "assets/names/ndebele-surnames.txt",
+                )
+              ],
+            );
+          },
         });
   }
 }
