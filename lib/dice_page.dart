@@ -141,7 +141,9 @@ class _DicePageState extends State<DicePage> {
           BottomNavigationBarItem(
               icon: Icon(Icons.tap_and_play), title: Text("Deck")),
           BottomNavigationBarItem(
-              icon: Icon(Icons.money_off), title: Text("Amberite")),
+              icon: Icon(Icons.money_off), title: Text("Shadows")),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.euro_symbol), title: Text("Amberites")),
         ],
         onTap: (index) {
           switch (index) {
@@ -149,6 +151,9 @@ class _DicePageState extends State<DicePage> {
               Navigator.pushNamed(context, "/deck");
               break;
             case 1:
+              Navigator.pushNamed(context, "/shadow-dwellers");
+              break;
+            case 2:
               Navigator.pushNamed(context, "/amberites");
               break;
           }

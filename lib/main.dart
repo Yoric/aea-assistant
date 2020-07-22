@@ -38,7 +38,28 @@ class AeAAssistantApp extends StatelessWidget {
             return DeckPage();
           },
           '/amberites': (BuildContext context) {
-            return NamesPage();
+            return NamesPage(
+              namePaths: [
+                NamePath(
+                  firstNames: "assets/names/british-first-names.txt",
+                  surnames: "assets/names/noble-surnames.txt",
+                )
+              ],
+            );
+          },
+          '/shadow-dwellers': (BuildContext context) {
+            return NamesPage(
+              namePaths: [
+                NamePath(
+                  firstNames: "assets/names/chinese-first-names.txt",
+                  surnames: "assets/names/chinese-surnames.txt",
+                ),
+                NamePath(
+                  firstNames: "assets/names/czech-first-names.txt",
+                  surnames: "assets/names/czech-surnames.txt",
+                )
+              ],
+            );
           },
         });
   }
