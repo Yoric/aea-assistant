@@ -1,6 +1,8 @@
 import 'dart:math';
 import 'package:flutter/material.dart';
 
+// This is both the home page and the dice-rolling page.
+
 class DicePage extends StatefulWidget {
   DicePage({Key key, this.title}) : super(key: key);
 
@@ -134,9 +136,24 @@ class _DicePageState extends State<DicePage> {
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-          child: Icon(Icons.tap_and_play),
-          onPressed: () => {Navigator.pushNamed(context, "/deck")}),
+      bottomNavigationBar: BottomNavigationBar(
+        items: const <BottomNavigationBarItem>[
+          BottomNavigationBarItem(
+              icon: Icon(Icons.tap_and_play), title: Text("Deck")),
+          BottomNavigationBarItem(
+              icon: Icon(Icons.money_off), title: Text("Amberite")),
+        ],
+        onTap: (index) {
+          switch (index) {
+            case 0:
+              Navigator.pushNamed(context, "/deck");
+              break;
+            case 1:
+              Navigator.pushNamed(context, "/amberites");
+              break;
+          }
+        },
+      ),
     );
   }
 }

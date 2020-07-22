@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import 'dice_page.dart';
 import 'deck_page.dart';
+import 'names_page.dart';
 
 void main() {
   runApp(AeAAssistantApp());
@@ -35,7 +36,10 @@ class AeAAssistantApp extends StatelessWidget {
           },
           '/deck': (BuildContext context) {
             return DeckPage();
-          }
+          },
+          '/amberites': (BuildContext context) {
+            return NamesPage();
+          },
         });
   }
 }
