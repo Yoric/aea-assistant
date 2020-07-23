@@ -23,21 +23,27 @@ class DicePage extends StatefulWidget {
 
 class _DicePageState extends State<DicePage> {
   Random _randomizer = Random();
-  double _sliderPosition = 2.0;
-  final List<int> _values = [];
+  double _sliderPosition;
+  List<int> _values;
 
   @override
   void initState() {
     super.initState();
-    _randomize();
+    _values = [0, 0];
+    _silentRandomize();
+    _sliderPosition = 2.0;
+  }
+
+  void _silentRandomize() {
+    for (var i = 0; i < _values.length; ++i) {
+      _values[i] = _randomizer.nextInt(6) + 1;
+    }
+    _values.sort();
   }
 
   void _randomize() {
     setState(() {
-      for (var i = 0; i < _values.length; ++i) {
-        _values[i] = _randomizer.nextInt(6) + 1;
-      }
-      _values.sort();
+      _silentRandomize();
     });
   }
 
@@ -48,6 +54,7 @@ class _DicePageState extends State<DicePage> {
   }
 
   String _getDieLabel(value) {
+    print("_getDieLabel($value)");
     switch (value) {
       case 1:
         return "⚀";
@@ -81,17 +88,15 @@ class _DicePageState extends State<DicePage> {
         RichText(
             textAlign: TextAlign.center,
             text: TextSpan(
-              children: _values == null
-                  ? [TextSpan(text: "Roll dice")]
-                  : _values
-                      .map((e) => TextSpan(
-                            text: _getDieLabel(e),
-                            style: _getDieStyle(e),
-                          ))
-                      .toList(),
+              children: _values
+                  .map((e) => TextSpan(
+                        text: _getDieLabel(e),
+                        style: _getDieStyle(e),
+                      ))
+                  .toList(),
             )),
         Slider(
-          value: max(_sliderPosition, 1.0),
+          value: _sliderPosition,
           onChanged: _updateNumberOfDice,
           onChangeStart: (value) {
             _randomize();
@@ -99,7 +104,7 @@ class _DicePageState extends State<DicePage> {
           onChangeEnd: (value) {
             _randomize();
           },
-          label: _values == null ? null : '${_values.length}',
+          label: '${_values.length}',
           min: 1.0,
           max: 10.0,
           divisions: 10,
