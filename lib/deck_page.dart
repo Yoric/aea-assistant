@@ -34,11 +34,6 @@ class _DeckPageState extends State<DeckPage> {
               setState(() {/* Force refresh */});
             },
             child: _getNextImage()));
-    return Scaffold(
-      body: Center(child: Draggable(feedback: child, child: child)),
-      floatingActionButton: FloatingActionButton(
-          child: Icon(Icons.home),
-          onPressed: () => {Navigator.pushNamed(context, "/")}),
-    );
+    return Center(child: Draggable(feedback: child, child: child));
   }
 }

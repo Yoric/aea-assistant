@@ -81,28 +81,23 @@ class _NamesPageState extends State<NamesPage> {
     var style = TextStyle(
       fontSize: 20.0,
     );
-    return Scaffold(
-      body: Center(
-          child: FutureBuilder(
-              future: _init,
-              builder: (BuildContext context,
-                  AsyncSnapshot<List<NameFamily>> snapshot) {
-                if (!snapshot.hasData) {
-                  return Text("Loading...");
-                }
-                return ListView.builder(
-                    addAutomaticKeepAlives: false,
-                    itemBuilder: (BuildContext context, int index) {
-                      return Center(
-                          child: Text(
-                        _nextName(snapshot),
-                        style: style,
-                      ));
-                    });
-              })),
-      floatingActionButton: FloatingActionButton(
-          child: Icon(Icons.home),
-          onPressed: () => {Navigator.pushNamed(context, "/")}),
-    );
+    return Center(
+        child: FutureBuilder(
+            future: _init,
+            builder: (BuildContext context,
+                AsyncSnapshot<List<NameFamily>> snapshot) {
+              if (!snapshot.hasData) {
+                return Text("Loading...");
+              }
+              return ListView.builder(
+                  addAutomaticKeepAlives: false,
+                  itemBuilder: (BuildContext context, int index) {
+                    return Center(
+                        child: Text(
+                      _nextName(snapshot),
+                      style: style,
+                    ));
+                  });
+            }));
   }
 }

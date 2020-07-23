@@ -1,8 +1,7 @@
+import 'package:aea/home_page.dart';
 import 'package:flutter/material.dart';
 
-import 'dice_page.dart';
-import 'deck_page.dart';
-import 'names_page.dart';
+import 'home_page.dart';
 
 void main() {
   runApp(AeAAssistantApp());
@@ -30,51 +29,6 @@ class AeAAssistantApp extends StatelessWidget {
           // closer together (more dense) than on mobile platforms.
           visualDensity: VisualDensity.adaptivePlatformDensity,
         ),
-        routes: <String, WidgetBuilder>{
-          '/': (BuildContext context) {
-            return DicePage(title: 'AeA assistant');
-          },
-          '/deck': (BuildContext context) {
-            return DeckPage();
-          },
-          '/amberites': (BuildContext context) {
-            return NamesPage(
-              namePaths: [
-                NamePath(
-                  firstNames: "assets/names/british-first-names.txt",
-                  surnames: "assets/names/noble-surnames.txt",
-                  hints: "assets/names/emoji.txt",
-                )
-              ],
-            );
-          },
-          '/shadow-dwellers': (BuildContext context) {
-            return NamesPage(
-              namePaths: [
-                NamePath(
-                  firstNames: "assets/names/chinese-first-names.txt",
-                  surnames: "assets/names/chinese-surnames.txt",
-                  hints: "assets/names/emoji.txt",
-                ),
-                NamePath(
-                  firstNames: "assets/names/czech-first-names.txt",
-                  surnames: "assets/names/czech-surnames.txt",
-                  hints: "assets/names/emoji.txt",
-                )
-              ],
-            );
-          },
-          '/chaos-dwellers': (BuildContext context) {
-            return NamesPage(
-              namePaths: [
-                NamePath(
-                  firstNames: "assets/names/ndebele-first-names.txt",
-                  surnames: "assets/names/ndebele-surnames.txt",
-                  hints: "assets/names/emoji.txt",
-                )
-              ],
-            );
-          },
-        });
+        home: HomePage(title: 'AeA assistant'));
   }
 }
