@@ -78,26 +78,40 @@ class _NamesPageState extends State<NamesPage> {
 
   @override
   Widget build(BuildContext context) {
-    var style = TextStyle(
-      fontSize: 20.0,
+    var nameStyle = TextStyle(
+      fontSize: 15.0,
     );
-    return Center(
-        child: FutureBuilder(
-            future: _init,
-            builder: (BuildContext context,
-                AsyncSnapshot<List<NameFamily>> snapshot) {
-              if (!snapshot.hasData) {
-                return Text("Loading...");
-              }
-              return ListView.builder(
-                  addAutomaticKeepAlives: false,
-                  itemBuilder: (BuildContext context, int index) {
-                    return Center(
-                        child: Text(
-                      _nextName(snapshot),
-                      style: style,
-                    ));
-                  });
-            }));
+    var arrowStyle = TextStyle(fontSize: 50.0, fontWeight: FontWeight.bold);
+    return Stack(
+      children: [
+        Center(
+          child: FutureBuilder(
+              future: _init,
+              builder: (BuildContext context,
+                  AsyncSnapshot<List<NameFamily>> snapshot) {
+                if (!snapshot.hasData) {
+                  return Text("Loading...");
+                }
+                return ListView.builder(
+                    addAutomaticKeepAlives: false,
+                    itemBuilder: (BuildContext context, int index) {
+                      return Center(
+                          child: Text(
+                        _nextName(snapshot),
+                        style: nameStyle,
+                      ));
+                    });
+              }),
+        ),
+        Align(
+          child: Text("⇨", style: arrowStyle),
+          alignment: Alignment.centerLeft,
+        ),
+        Align(
+          child: Text("⇦", style: arrowStyle),
+          alignment: Alignment.centerRight,
+        )
+      ],
+    );
   }
 }
