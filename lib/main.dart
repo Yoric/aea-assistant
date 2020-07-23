@@ -43,6 +43,7 @@ class AeAAssistantApp extends StatelessWidget {
                 NamePath(
                   firstNames: "assets/names/british-first-names.txt",
                   surnames: "assets/names/noble-surnames.txt",
+                  hints: "assets/names/emoji.txt",
                 )
               ],
             );
@@ -53,10 +54,12 @@ class AeAAssistantApp extends StatelessWidget {
                 NamePath(
                   firstNames: "assets/names/chinese-first-names.txt",
                   surnames: "assets/names/chinese-surnames.txt",
+                  hints: "assets/names/emoji.txt",
                 ),
                 NamePath(
                   firstNames: "assets/names/czech-first-names.txt",
                   surnames: "assets/names/czech-surnames.txt",
+                  hints: "assets/names/emoji.txt",
                 )
               ],
             );
@@ -67,6 +70,7 @@ class AeAAssistantApp extends StatelessWidget {
                 NamePath(
                   firstNames: "assets/names/ndebele-first-names.txt",
                   surnames: "assets/names/ndebele-surnames.txt",
+                  hints: "assets/names/emoji.txt",
                 )
               ],
             );

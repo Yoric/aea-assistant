@@ -2,15 +2,23 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 
 class NamePath {
-  NamePath({@required this.firstNames, @required this.surnames});
+  NamePath(
+      {@required this.firstNames,
+      @required this.surnames,
+      @required this.hints});
   final String firstNames;
   final String surnames;
+  final String hints;
 }
 
 class NameFamily {
-  NameFamily({@required this.firstNames, @required this.surnames});
+  NameFamily({@required firstNames, @required surnames, @required hints})
+      : this.firstNames = firstNames,
+        this.surnames = surnames,
+        this.hints = hints;
   final List<String> firstNames;
   final List<String> surnames;
+  final List<String> hints;
 }
 
 class NamesPage extends StatefulWidget {
@@ -33,11 +41,18 @@ class _NamesPageState extends State<NamesPage> {
     var surnames = DefaultAssetBundle.of(context)
         .loadString(namePath.surnames)
         .then((value) => value.split("\n"));
-    var family = firstNames.then((firstNames) {
-      return surnames.then((surnames) {
-        var result = NameFamily(firstNames: firstNames, surnames: surnames);
-        return result;
-      });
+    var hints = DefaultAssetBundle.of(context)
+        .loadString(namePath.hints)
+        .then((value) => value.split("\n"));
+
+    Future<List<List<String>>> wait =
+        Future.wait([firstNames, surnames, hints]);
+    var family = wait.then((value) {
+      var firstNames = value[0];
+      var surnames = value[1];
+      var hints = value[2];
+      return NameFamily(
+          firstNames: firstNames, surnames: surnames, hints: hints);
     });
     return family;
   }
@@ -54,9 +69,11 @@ class _NamesPageState extends State<NamesPage> {
     var family = snapshot.data[_randomizer.nextInt(snapshot.data.length)];
     var firstNames = family.firstNames;
     var surnames = family.surnames;
+    var hints = family.hints;
     var firstName = firstNames[_randomizer.nextInt(firstNames.length)];
     var surname = surnames[_randomizer.nextInt(surnames.length)];
-    return "$firstName $surname";
+    var hint = hints[_randomizer.nextInt(hints.length)];
+    return "$firstName $surname $hint";
   }
 
   @override
